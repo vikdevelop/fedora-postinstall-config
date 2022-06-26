@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 import os
 import sys
-#from gettext import gettext as _
+import subprocess
+
 HOME = os.path.expanduser('~')
-#import checkdistro
+
 print("→ kontrola, jestli se jedná o distribuci Fedora ")
 if not os.path.exists("/usr/bin/dnf"):
     print('\033[1m' + 'x-ERROR:' + '\033[0m' + "vypadá to, že na tomto HW není nainstalovaná distribuce Fedora, nebo je poškozená. V takovém případě nemůžete tento skript použít :(")
@@ -70,40 +71,51 @@ elif yn == 'y' or 'Y':
     # Enable flatpak repo
     print("→ konfigurace Flathub repositáře")
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
-    # Install Flatpak Apps
-    print("→ instalace Flatpak aplikací:")
-    print("Flatpak aplikace jsou sandboxované aplikace, které běží mimo systém ve vlastním prostoru. Tyto aplikace jsou schopné běžet na jakékoliv Linuxové distribuci, nejen na Fedoře. U těchto aplikací není potřeba řešit žádnou softwarovou kompatibiltu. Prostě je jen nainstalujete a spustíte. Seznam aplikací najdete na webu https://beta.flathub.org/cs")
-    flatpakinstall = input("→→ zadejte ID nebo názvy Flatpak aplikací, které chcete nainstalovat (pro přeskočení stiskněte enter): ")
-    if flatpakinstall == "":
-        print("Přeskakuji.")
-    else:
-        print("→ instalace Flatpak aplikací:")
-        os.system("flatpak install -y %s" % flatpakinstall)
-    # installation apps via DNF
-    print("→ instalace aplikací přes správce balíčků DNF:")
-    dnfinstall = input("→→ chcete také nainstalovat kromě Flatpak aplikací i aplikace přes správce balíčků DNF? [Y/n]: ")
-    if dnfinstall == 'n':
-        print("Přeskakuji.")
-    elif dnfinstall == 'Y' or 'y':
-        dnfpkgs = input("→→ zadejte názvy balíčků které chcete nainstalovat: ")
-        os.system("sudo dnf install -y %s" % dnfpkgs)
     # Multimedia & codecs
-    print("→ Multimédia a kodeky")
-    print("→→ Fedora může mít občas problémy s kodeky. Pokud chcete, můžete si nainstalovat přehrávač VLC media player jako Flatpak a problémům s kodeky se vyhnete.")
-    vlcflatpak = input("Chcete tedy nainstalovat program VLC media player jako Flatpak? [Y/n]: ")
-    if vlcflatpak == 'n':
+    print("→ instalace doporučených Flatpak aplikací")
+    skip = input("Jestli chcete, můžete tento krok přeskočit stisknutím klávesy enter (pro pokračování stiskněte klávesu c): ")
+    if skip == "":
         print("Přeskakuji.")
-    elif vlcflatpak == 'Y' or 'y':
-        if not os.path.exists("/var/lib/flatpak/app/org.videolan.VLC"):
-            os.system("flatpak install -y org.videolan.VLC")
-        else:
-            print("→→ VLC již bylo nainstalováno.")
-    
+    elif skip == "c":
+        flatseal = input("Chcete nainstalovat aplikaci Flatseal, která umožňuje nastavovat oprávnění aplikací Flatpak? [Y/n]: ")
+        em = input("Chcete nainstalovat aplikaci Extension Manager, která umožňuje spravovat rozšíření pro prostředí GNOME (edice Fedora Workstation)? [Y/n]: ")
+        dw = input("Chcete nainstalovat aplikaci Dynamic Wallpaper (Dynamická tapeta), která umožňuje nastavování přechodných tapet v prostředí GNOME? [Y/n]: ")
+        if flatseal == 'n':
+            print("...")
+        elif flatseal == 'Y' or 'y':
+            if not os.path.exists("/var/lib/flatpak/app/com.github.tchx84.Flatseal"):
+                os.system("flatpak install -y com.github.tchx84.Flatseal")
+            else:
+                print("Flatseal je již nainstalovaný.")
+        if em == 'n':
+            print("...")
+        elif em == 'Y' or 'y':
+            if not os.path.exists("/var/lib/flatpak/app/com.mattjakeman.ExtensionManager"):
+                os.system("flatpak install -y com.mattjakeman.ExtensionManager")
+            else:
+                print("Extension Manager je již nainstalovaný.")
+        if dw == 'n':
+            print("...")
+        elif dw == 'Y' or 'y':
+            if not os.path.exists("/var/lib/flatpak/app/me.dusansimic.DynamicWallapaper"):
+                os.system("flatpak install -y me.dusansimic.DynamicWallapaper")
+            else:
+                print("Dynamic Wallpaper je již nainstalovaný.")
+    print("→ multimediální kodeky")
+    print("→→ občas se můžete setkat s potenciálními problémy s kodeky ve webovém prohlížeči (ale i u jiných aplikací).")
+    codecs = input("→→→ přejete si tedy nainstalovat dodatečné multimediální kodeky? [Y/n]: ")
+    print("→ instalace proprietárního ovladače nVidia")
+    nvidia = input("→→ přejete si nainstalovat proprietární ovladač nVidia (v případě že máte GPU od společnosti nVidia)? [Y/n]: ")
+    if codecs == 'n':
+        print("Přeskakuji.")
+    elif codecs == 'Y' or 'y':
+        os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
     # NVIDIA proprietary graphic card driver installation
-    nvidia = input("Přejete si nainstalovat proprietární ovladač nVidia (v případě že máte GPU od společnosti nVidia)? [Y/n]: ")
     if nvidia == 'n':
         print("Přeskakuji.")
     elif nvidia == 'y' or 'Y':
+        print("→ před instalací proprietárního driveru nvidia nejdříve zkontrolujeme, jestli nejsou k dispozici další aktualizace:")
+        os.system("sudo dnf update --refresh -y")
         print("→ instalování prop. ovladače nVidia Linux akmod graphic card driver:")
         os.system("sudo dnf install -y akmod-nvidia")
         print('\033[1m' + '→→ OK' + '\033[0m')
