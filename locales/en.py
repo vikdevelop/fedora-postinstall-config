@@ -12,7 +12,7 @@ print("→→ we will now ask you for your password within sudo that choosed in 
 os.system("sudo dnf update -y")
 print("→ updatation Fedora " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Summary:' + '\033[0m')
-print("- checking name of distro - OK \n- updatation of system - OK \n- configuration GRUB + Btrfs a installation timeshift \n- configuration Flathub repository a installation Flatpak apps \n- installation DNF apps \n- configuration codecs \n- instlallation proprietary driver nVidia")
+print("- checking name of distro - OK \n- updatation of system - OK \n- configuration GRUB + Btrfs a installation timeshift \n- configuration Flathub repository a installation recommended Flatpak apps \n- configuration codecs \n- instlallation proprietary driver nVidia")
 yn = input("Would you like to continue? [Y/n]: ")
 if yn == 'n':
     print("Canceled.")
