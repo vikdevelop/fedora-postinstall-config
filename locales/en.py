@@ -32,6 +32,7 @@ if yn == 'y' or 'Y':
             os.system("sudo dnf install -y make")
         
         # Preparing for install grub-btrfs
+        print("→→ downloading repository grub-brtfs")
         os.system("cd $HOME/Downloads && git clone https://github.com/Antynea/grub-btrfs")
         os.chdir("%s/Downloads/grub-btrfs" % HOME)
         # config file of grub-btrfs
@@ -57,7 +58,7 @@ if yn == 'y' or 'Y':
         
         # Installation grub-btrfs
         os.system("sudo make install")
-        print("→→→ compilation & installation was successfull")
+        print("→→→ compilation & installation with program make was successfull")
         # Update GRUB
         os.system("sudo grub2-mkconfig -o /boot/grub2/grub.cfg")
         # Activate process grub-btrfs with systemd
