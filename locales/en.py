@@ -10,7 +10,7 @@ if not os.path.exists("/usr/bin/dnf"):
     exit()
 else:
     print('\033[1m' + '→→ OK' + '\033[0m')
-print("→→ we will now ask you for your password within sudo because we need to update the Fedora distribution packages to the latest version:")
+print("→→ we will now ask you for your password within sudo that choosed in installation of Fedora, because we need to update the Fedora distribution packages to the latest version:")
 os.system("sudo dnf update -y")
 print("→ updatation Fedora " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Summary:' + '\033[0m')
@@ -72,7 +72,8 @@ if yn == 'y' or 'Y':
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Install Flatpak Apps
     print("→ installation of Flatpak apps:")
-    flatpakinstall = input("→→ enter IDs or names of Flatpak apps want you install (for skip press enter): ")
+    print("→→ Flatpak applications are sandboxed applications that run outside the system in their own space. These applications are capable of running on any Linux distribution, not just Fedora. There is no software compatibility to deal with for these applications. You just install and run them.")
+    flatpakinstall = input("→→→ enter IDs or names of Flatpak apps want you install (for skip press enter): ")
     if flatpakinstall == "":
         print("I skiping.")
     else:
