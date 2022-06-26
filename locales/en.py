@@ -72,7 +72,7 @@ if yn == 'y' or 'Y':
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Install Flatpak Apps
     print("→ installation of Flatpak apps:")
-    print("→→ Flatpak applications are sandboxed applications that run outside the system in their own space. These applications are capable of running on any Linux distribution, not just Fedora. There is no software compatibility to deal with for these applications. You just install and run them.")
+    print("→→ Flatpak applications are sandboxed applications that run outside the system in their own space. These applications are capable of running on any Linux distribution, not just Fedora. There is no software compatibility to deal with for these applications. You just install and run them. List of apps find on website https://beta.flathub.org/cs")
     flatpakinstall = input("→→→ enter IDs or names of Flatpak apps want you install (for skip press enter): ")
     if flatpakinstall == "":
         print("I skiping.")
