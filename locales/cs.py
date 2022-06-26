@@ -72,7 +72,7 @@ elif yn == 'y' or 'Y':
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Install Flatpak Apps
     print("→ instalace Flatpak aplikací:")
-    print("Flatpak aplikace jsou sandboxované aplikace, které běží mimo systém ve vlastním prostoru. Tyto aplikace jsou schopné běžet na jakékoliv Linuxové distribuci, nejen na Fedoře. U těchto aplikací není potřeba řešit žádnou softwarovou kompatibiltu. Prostě je jen nainstalujete a spustíte.")
+    print("Flatpak aplikace jsou sandboxované aplikace, které běží mimo systém ve vlastním prostoru. Tyto aplikace jsou schopné běžet na jakékoliv Linuxové distribuci, nejen na Fedoře. U těchto aplikací není potřeba řešit žádnou softwarovou kompatibiltu. Prostě je jen nainstalujete a spustíte. Seznam aplikací najdete na webu https://beta.flathub.org/cs")
     flatpakinstall = input("→→ zadejte ID nebo názvy Flatpak aplikací, které chcete nainstalovat (pro přeskočení stiskněte enter): ")
     if flatpakinstall == "":
         print("Přeskakuji.")
