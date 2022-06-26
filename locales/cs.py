@@ -10,7 +10,7 @@ if not os.path.exists("/usr/bin/dnf"):
     exit()
 else:
     print('\033[1m' + '→→ OK' + '\033[0m')
-print("→→ nyní se vás zeptáme v rámci programu sudo na heslo, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:")
+print("→→ nyní se vás zeptáme v rámci programu sudo na heslo, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:")
 os.system("sudo dnf update -y")
 print("→ aktualizace Fedory " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Shrnutí:' + '\033[0m')
@@ -72,6 +72,7 @@ elif yn == 'y' or 'Y':
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Install Flatpak Apps
     print("→ instalace Flatpak aplikací:")
+    print("Flatpak aplikace jsou sandboxované aplikace, které běží mimo systém ve vlastním prostoru. Tyto aplikace jsou schopné běžet na jakékoliv Linuxové distribuci, nejen na Fedoře. U těchto aplikací není potřeba řešit žádnou softwarovou kompatibiltu. Prostě je jen nainstalujete a spustíte.")
     flatpakinstall = input("→→ zadejte ID nebo názvy Flatpak aplikací, které chcete nainstalovat (pro přeskočení stiskněte enter): ")
     if flatpakinstall == "":
         print("Přeskakuji.")
@@ -79,8 +80,8 @@ elif yn == 'y' or 'Y':
         print("→ instalace Flatpak aplikací:")
         os.system("flatpak install -y %s" % flatpakinstall)
     # installation apps via DNF
-    print("→ instalace DNF aplikací:")
-    dnfinstall = input("→→ chcete také nainstalovat aplikace přes správce balíčků DNF? [Y/n]: ")
+    print("→ instalace aplikací přes správce balíčků DNF:")
+    dnfinstall = input("→→ chcete také nainstalovat kromě Flatpak aplikací i aplikace přes správce balíčků DNF? [Y/n]: ")
     if dnfinstall == 'n':
         print("Přeskakuji.")
     elif dnfinstall == 'Y' or 'y':
