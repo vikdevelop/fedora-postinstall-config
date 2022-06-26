@@ -59,10 +59,10 @@ if yn == 'y' or 'Y':
         # Installation grub-btrfs
         os.system("sudo make install")
         print("→→→ compilation & installation with program make was successfull")
-        # Update GRUB
-        os.system("sudo grub2-mkconfig -o /boot/grub2/grub.cfg")
         # Activate process grub-btrfs with systemd
         os.system("sudo systemctl enable grub-btrfs.path && sudo systemctl start grub-btrfs.paath")
+        # Update GRUB
+        os.system("sudo grub2-mkconfig -o /boot/grub2/grub.cfg")
         print("→→ configuration GRUB + Btrfs was successfull")
     else:
         print("→ GRUB + Btrfs already configured.")
