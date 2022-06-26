@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 import os
 import sys
-#from gettext import gettext as _
 HOME = os.path.expanduser('~')
-#import checkdistro
 print("→ checking if it is a Fedora distribution ")
 if not os.path.exists("/usr/bin/dnf"):
     print('\033[1m' + 'x-ERROR:' + '\033[0m' + "it looks like the Fedora distribution is not installed on this HW, or it is corrupted. In this case, you cannot use this script :(")
@@ -71,38 +69,51 @@ if yn == 'y' or 'Y':
     print("→ configuration Flatpak-Flathub repo")
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Install Flatpak Apps
-    print("→ installation of Flatpak apps:")
-    print("→→ Flatpak applications are sandboxed applications that run outside the system in their own space. These applications are capable of running on any Linux distribution, not just Fedora. There is no software compatibility to deal with for these applications. You just install and run them. List of apps find on website https://beta.flathub.org/cs")
-    flatpakinstall = input("→→→ enter IDs or names of Flatpak apps want you install (for skip press enter): ")
-    if flatpakinstall == "":
+print("→ installation recommended Flatpak apps")
+    skip = input("If you want, you can skip this step by pressing the enter key (press the c key to continue): ")
+    if skip == "":
         print("I skiping.")
-    else:
-        os.system("flatpak install -y %s" % flatpakinstall)
-    # installation apps via DNF
-    print("→ installation apps via DNF package manager:")
-    dnfinstall = input("→→ do you also want to install applications via the DNF package manager in addition to Flatpak applications? [Y/n]: ")
-    if dnfinstall == 'n':
+    elif skip == "c":
+        flatseal = input("Do you want install the Flatseal app that allows you to set permissions on Flatpak apps? [Y/n]: ")
+        em = input("Do you want to install the Extension Manager application that allows you to manage extensions for GNOME (Fedora Workstation edition)? [Y/n]: ")
+        dw = input("Do you want to install Dynamic Wallpaper, an application that allows you to set transient wallpapers in GNOME? [Y/n]: ")
+        if flatseal == 'n':
+            print("...")
+        elif flatseal == 'Y' or 'y':
+            if not os.path.exists("/var/lib/flatpak/app/com.github.tchx84.Flatseal"):
+                os.system("flatpak install -y com.github.tchx84.Flatseal")
+            else:
+                print("Flatseal already installed.")
+        if em == 'n':
+            print("...")
+        elif em == 'Y' or 'y':
+            if not os.path.exists("/var/lib/flatpak/app/com.mattjakeman.ExtensionManager"):
+                os.system("flatpak install -y com.mattjakeman.ExtensionManager")
+            else:
+                print("Extension Manager already installed.")
+        if dw == 'n':
+            print("...")
+        elif dw == 'Y' or 'y':
+            if not os.path.exists("/var/lib/flatpak/app/me.dusansimic.DynamicWallapaper"):
+                os.system("flatpak install -y me.dusansimic.DynamicWallapaper")
+            else:
+                print("Dynamic Wallpaper already installed.")
+    print("→ multimedia codecs")
+    print("→→ sometimes you may encounter potential problems with codecs in the web browser (but also in other applications).")
+    codecs = input("→→→ do you wish to install additional multimedia codecs? [Y/n]: ")
+    print("→ installation nVidia proprietary driver")
+    nvidia = input("→→ do you wish to install a proprietary nVidia driver (in case you have an nVidia GPU)?? [Y/n]: ")
+    if codecs == 'n':
         print("I skiping.")
-    elif dnfinstall == 'Y' or 'y':
-        dnfpkgs = input("→→ enter name of packages want you install: ")
-        os.system("sudo dnf install -y %s" % dnfpkgs)
-    # Multimedia & codecs
-    print("→ Multimedia a codecs")
-    print("→→ Fedora may occasionally have problems with codecs. If you want, you can install VLC media player as Flatpak and you can avoid codec problems.")
-    vlcflatpak = input("So you want to install VLC media player as Flatpak? [Y/n]: ")
-    if vlcflatpak == 'n':
-        print("I skiping.")
-    elif vlcflatpak == 'Y' or 'y':
-        if not os.path.exists("/var/lib/flatpak/app/org.videolan.VLC"):
-            os.system("flatpak install -y org.videolan.VLC")
-        else:
-            print("→→ VLC was installed.")
+    elif codecs == 'Y' or 'y':
+        os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
     # NVIDIA proprietary graphic card driver installation
-    nvidia = input("Do you wish to install a proprietary nVidia driver (in case you have an nVidia GPU)? [Y/n]: ")
     if nvidia == 'n':
         print("I skiping.")
     elif nvidia == 'y' or 'Y':
-        print("→ installation proprietary driver nVidia Linux akmod graphic card driver:")
+        print("→ before installing a proprietary nvidia driver, first check for other updates:")
+        os.system("sudo dnf update --refresh -y")
+        print("→ installing proprietary driver nVidia Linux akmod graphic card driver:")
         os.system("sudo dnf install -y akmod-nvidia")
         print('\033[1m' + '→→ OK' + '\033[0m')
-    print('\033[1m' + '→ post-configuration of Fedora was successfull!' + '\033[0m')
+    print('\033[1m' + '→ post installation configuration of Fedora was successfull"' + '\033[0m')
