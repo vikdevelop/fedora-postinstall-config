@@ -79,8 +79,8 @@ if yn == 'y' or 'Y':
     else:
         os.system("flatpak install -y %s" % flatpakinstall)
     # installation apps via DNF
-    print("→ installation DNF apps:")
-    dnfinstall = input("→→ want you install too apps via DNF package manager? [Y/n]: ")
+    print("→ installation apps via DNF package manager:")
+    dnfinstall = input("→→ do you also want to install applications via the DNF package manager in addition to Flatpak applications? [Y/n]: ")
     if dnfinstall == 'n':
         print("I skiping.")
     elif dnfinstall == 'Y' or 'y':
