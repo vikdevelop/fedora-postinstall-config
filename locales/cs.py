@@ -15,7 +15,7 @@ print("→→ nyní se vás zeptáme v rámci programu sudo na heslo, které jst
 os.system("sudo dnf update -y")
 print("→ aktualizace Fedory " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Shrnutí:' + '\033[0m')
-print("- kontrola názvu distribuce - OK \n- aktualizace systému - OK \n- konfigurace GRUB + Btrfs a instalace timeshift \n- konfigurace Flathub repositáře a instalace Flatpak aplikací \n- instalace DNF aplikací \n- konfigurace kodeků \n- instalace proprietárního ovladače nVidia")
+print("- kontrola názvu distribuce - OK \n- aktualizace systému - OK \n- konfigurace GRUB + Btrfs a instalace timeshift \n- konfigurace Flathub repositáře a instalace doporučených Flatpak aplikací \n- konfigurace kodeků \n- instalace proprietárního ovladače nVidia")
 yn = input("Chcete pokračovat? [Y/n]: ")
 if yn == 'n':
     print("Zrušeno.")
