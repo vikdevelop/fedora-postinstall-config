@@ -32,6 +32,7 @@ elif yn == 'y' or 'Y':
             os.system("sudo dnf install -y make")
         
         # Preparing for install grub-btrfs
+        print("→→ stahování repozitáře grub-brtfs")
         os.system("cd $HOME/Stažené && git clone https://github.com/Antynea/grub-btrfs")
         os.chdir("%s/Stažené/grub-btrfs" % HOME)
         # config file of grub-btrfs
@@ -57,7 +58,7 @@ elif yn == 'y' or 'Y':
         
         # Installation grub-btrfs
         os.system("sudo make install")
-        print("→→→ kompilace a instalace proběhla úspěšně")
+        print("→→→ kompilace a instalace pomocí programu make proběhla úspěšně")
         # Update GRUB
         os.system("sudo grub2-mkconfig -o /boot/grub2/grub.cfg")
         # Activate process grub-btrfs with systemd
