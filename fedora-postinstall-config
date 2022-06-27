@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import sys
 import subprocess
 subprocess.call(['pkexec', 'python3', *sys.argv])
 print("Configuring locales...")
