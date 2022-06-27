@@ -106,8 +106,7 @@ elif yn == 'y' or 'Y':
     codecs = input("→→→ přejete si tedy nainstalovat dodatečné multimediální kodeky? [Y/n]: ")
     print("→ zrychlení správce balíčků DNF\n→→ DNF patří k těm pomalejším správcům balíčků. Je však možné ho zrychlit.")
     dnf = input("→→→ přejete si tedy zrychlit správce balíčků dnf? [Y/n]: ")
-    sys.path.append("/tmp/fedora-postconfig/scripts")
-    import gpu
+    os.system("python3 /tmp/fedora-postconfig/scripts/gpu.py")
     if dnf == 'n':
         print("Přeskakuji.")
     elif dnf == 'Y' or 'y':
