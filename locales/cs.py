@@ -56,7 +56,7 @@ elif yn == 'y' or 'Y':
             p.write('WantedBy=run-timeshift-backup.mount')
         
         # Installation grub-btrfs
-        os.system("make install")
+        os.system("sudo make install")
         print("→→→ kompilace a instalace pomocí programu make proběhla úspěšně")
         # Activate process grub-btrfs with systemd
         os.system("sudo systemctl enable grub-btrfs.path && sudo systemctl start grub-btrfs.paath")
@@ -106,12 +106,12 @@ elif yn == 'y' or 'Y':
     dnf = input("→→→ přejete si tedy zrychlit správce balíčků dnf? [Y/n]: ")
     os.system("python3 /tmp/fedora-postinstall-config/scripts/gpu.py")
     if dnf == 'n':
-        print("Přeskakuji.")
+        print("zrychlení dnf: přeskakuji.")
     elif dnf == 'Y' or 'y':
         os.system("pkexec python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
         print(" dnf bylo úspěšně zrychleno")
     if codecs == 'n':
-        print("Přeskakuji.")
+        print("instalace kodeků: přeskakuji.")
     elif codecs == 'Y' or 'y':
         os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
     print('\033[1m' + 'post-konfigurace Fedory proběhla úspěšně!' + '\033[0m')
