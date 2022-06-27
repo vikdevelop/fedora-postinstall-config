@@ -94,8 +94,8 @@ print("→ installation recommended Flatpak apps")
         if dw == 'n':
             print("...")
         elif dw == 'Y' or 'y':
-            if not os.path.exists("/var/lib/flatpak/app/me.dusansimic.DynamicWallapaper"):
-                os.system("flatpak install -y me.dusansimic.DynamicWallapaper")
+            if not os.path.exists("/var/lib/flatpak/app/me.dusansimic.DynamicWallpaper"):
+                os.system("flatpak install -y me.dusansimic.DynamicWallpaper")
             else:
                 print("Dynamic Wallpaper already installed.")
     print("→ multimedia codecs")
