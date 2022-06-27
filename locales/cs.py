@@ -11,11 +11,11 @@ if not os.path.exists("/usr/bin/dnf"):
     exit()
 else:
     print('\033[1m' + '→→ OK' + '\033[0m')
-print("→→ nyní se vás zeptáme v rámci programu sudo na heslo, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:")
-os.system("sudo dnf update -y")
+print("→→ nyní se vám zobrazí dialogové okno pro zadání hesla, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:")
+os.system("pkexec dnf update -y")
 print("→ aktualizace Fedory " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Shrnutí:' + '\033[0m')
-print("- kontrola názvu distribuce - OK \n- aktualizace systému - OK \n- konfigurace GRUB + Btrfs a instalace timeshift \n- konfigurace Flathub repositáře a instalace doporučených Flatpak aplikací \n- konfigurace kodeků \n- instalace proprietárního ovladače nVidia")
+print("- kontrola názvu distribuce - OK \n- aktualizace systému - OK \n- konfigurace GRUB + Btrfs a instalace timeshift \n- konfigurace Flathub repositáře a instalace Flatpak aplikací \n- konfigurace kodeků \n- zrychlení DNF \n- instalace volitelného SW pro vaší grafickou kartu")
 yn = input("Chcete pokračovat? [Y/n]: ")
 if yn == 'n':
     print("Zrušeno.")
@@ -105,18 +105,17 @@ elif yn == 'y' or 'Y':
     print("→→ občas se můžete setkat s potenciálními problémy s kodeky ve webovém prohlížeči (ale i u jiných aplikací).")
     codecs = input("→→→ přejete si tedy nainstalovat dodatečné multimediální kodeky? [Y/n]: ")
     print("→ instalace proprietárního ovladače nVidia")
-    nvidia = input("→→ přejete si nainstalovat proprietární ovladač nVidia (v případě že máte GPU od společnosti nVidia)? [Y/n]: ")
+    dnf = input("→→→ přejete si tedy urychlit správce balíčků dnf? [Y/n]: ")
+    sys.path.append("/tmp/fedora-postconfig/scripts")
+    import gpu
+    if dnf == 'n':
+        print("Přeskakuji.")
+    elif dnf == 'Y' or 'y':
+        print(" opět se vám zobrazí dialogové okno pro zadání hesla, proto že je potřeba upravit nastavení dnf:")
+        os.system("pkexec python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
+        print(" dnf bylo úspěšně zrychleno")
     if codecs == 'n':
         print("Přeskakuji.")
     elif codecs == 'Y' or 'y':
         os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
-    # NVIDIA proprietary graphic card driver installation
-    if nvidia == 'n':
-        print("Přeskakuji.")
-    elif nvidia == 'y' or 'Y':
-        print("→ před instalací proprietárního driveru nvidia nejdříve zkontrolujeme, jestli nejsou k dispozici další aktualizace:")
-        os.system("sudo dnf update --refresh -y")
-        print("→ instalování prop. ovladače nVidia Linux akmod graphic card driver:")
-        os.system("sudo dnf install -y akmod-nvidia")
-        print('\033[1m' + '→→ OK' + '\033[0m')
-    print('\033[1m' + '→ post-konfigurace Fedory proběhla úspěšně!' + '\033[0m')
+    print('\033[1m' + 'post-konfigurace Fedory proběhla úspěšně!' + '\033[0m')
