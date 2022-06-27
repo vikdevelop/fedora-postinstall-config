@@ -2,9 +2,8 @@
 import os
 import sys
 import subprocess
-os.system("pkexec python3 /tmp/fedora-postconfig/locales/cs.py")
 HOME = os.path.expanduser('~')
-
+subprocess.call(['pkexec', 'python3', *sys.argv])
 print("→ kontrola, jestli se jedná o distribuci Fedora ")
 if not os.path.exists("/usr/bin/dnf"):
     print('\033[1m' + 'x-ERROR:' + '\033[0m' + "vypadá to, že na tomto HW není nainstalovaná distribuce Fedora, nebo je poškozená. V takovém případě nemůžete tento skript použít :(")
@@ -110,11 +109,11 @@ elif yn == 'y' or 'Y':
     if dnf == 'n':
         print("Přeskakuji.")
     elif dnf == 'Y' or 'y':
-        #print(" opět se vám zobrazí dialogové okno pro zadání hesla, proto že je potřeba upravit nastavení dnf:")
-        os.system("python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
+        print(" opět se vám zobrazí dialogové okno pro zadání hesla, proto že je potřeba upravit nastavení dnf:")
+        os.system("pkexec python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
         print(" dnf bylo úspěšně zrychleno")
     if codecs == 'n':
         print("Přeskakuji.")
     elif codecs == 'Y' or 'y':
-        os.system("dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
+        os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
     print('\033[1m' + 'post-konfigurace Fedory proběhla úspěšně!' + '\033[0m')
