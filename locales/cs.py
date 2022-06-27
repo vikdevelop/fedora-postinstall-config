@@ -2,7 +2,7 @@
 import os
 import sys
 import subprocess
-
+os.system("pkexec python3 /tmp/fedora-postconfig/locales/cs.py")
 HOME = os.path.expanduser('~')
 
 print("→ kontrola, jestli se jedná o distribuci Fedora ")
