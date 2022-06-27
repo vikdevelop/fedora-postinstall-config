@@ -67,13 +67,13 @@ elif yn == 'y' or 'Y':
         print("→ GRUB + Btrfs již bylo nakonfigurováno.")
     
     # Enable flatpak repo
-    print("→ konfigurace Flathub repositáře")
+    print("→ přidávání Flathub repositáře")
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Multimedia & codecs
     print("→ instalace doporučených Flatpak aplikací")
     skip = input("Jestli chcete, můžete tento krok přeskočit stisknutím klávesy enter (pro pokračování stiskněte klávesu c): ")
     if skip == "":
-        print("Přeskakuji.")
+        print("instalace Flatpak aplikací: přeskakuji.")
     elif skip == "c":
         flatseal = input("Chcete nainstalovat aplikaci Flatseal, která umožňuje nastavovat oprávnění aplikací Flatpak? [Y/n]: ")
         em = input("Chcete nainstalovat aplikaci Extension Manager, která umožňuje spravovat rozšíření pro prostředí GNOME (edice Fedora Workstation)? [Y/n]: ")
