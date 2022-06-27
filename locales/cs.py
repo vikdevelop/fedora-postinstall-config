@@ -3,7 +3,6 @@ import os
 import sys
 import subprocess
 HOME = os.path.expanduser('~')
-subprocess.call(['pkexec', 'python3', *sys.argv])
 print("→ kontrola, jestli se jedná o distribuci Fedora ")
 if not os.path.exists("/usr/bin/dnf"):
     print('\033[1m' + 'x-ERROR:' + '\033[0m' + "vypadá to, že na tomto HW není nainstalovaná distribuce Fedora, nebo je poškozená. V takovém případě nemůžete tento skript použít :(")
