@@ -12,7 +12,7 @@ print("→→ we will now ask you for your password within sudo that choosed in 
 os.system("sudo dnf update -y")
 print("→ updatation Fedora " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Summary:' + '\033[0m')
-print("- checking name of distro - OK \n- updatation of system - OK \n- configuration GRUB + Btrfs a installation timeshift \n- configuration Flathub repository a installation recommended Flatpak apps \n- configuration codecs \n- instlallation proprietary driver nVidia")
+print("- checking name of distro - OK \n- updatation of Fedora - OK \n- configuration GRUB + Btrfs a installation timeshift \n- configuration Flathub repository and installation recommended Flatpak apps \n- configuration of codecs \n- speeding up DNF \n- installation optional SW for your graphic card")
 yn = input("Would you like to continue? [Y/n]: ")
 if yn == 'n':
     print("Canceled.")
@@ -101,19 +101,15 @@ print("→ installation recommended Flatpak apps")
     print("→ multimedia codecs")
     print("→→ sometimes you may encounter potential problems with codecs in the web browser (but also in other applications).")
     codecs = input("→→→ do you wish to install additional multimedia codecs? [Y/n]: ")
-    print("→ installation nVidia proprietary driver")
-    nvidia = input("→→ do you wish to install a proprietary nVidia driver (in case you have an nVidia GPU)?? [Y/n]: ")
+    print("→ speeding up DNF pkg manager \n→→ DNF package manager is one of the slower package managers. However, it is possible to speed it up.")
+    dnf = input("→→→ so do you wish speeding up dnf pkg manager? [Y/n]: ")
+    if dnf == 'n':
+        print("I skiping.")
+    elif dnf == 'Y' or 'y':
+        os.system("pkexec python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
+        print(" dnf was speed up successfull.")
     if codecs == 'n':
         print("I skiping.")
     elif codecs == 'Y' or 'y':
         os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
-    # NVIDIA proprietary graphic card driver installation
-    if nvidia == 'n':
-        print("I skiping.")
-    elif nvidia == 'y' or 'Y':
-        print("→ before installing a proprietary nvidia driver, first check for other updates:")
-        os.system("sudo dnf update --refresh -y")
-        print("→ installing proprietary driver nVidia Linux akmod graphic card driver:")
-        os.system("sudo dnf install -y akmod-nvidia")
-        print('\033[1m' + '→→ OK' + '\033[0m')
     print('\033[1m' + '→ post installation configuration of Fedora was successfull"' + '\033[0m')
