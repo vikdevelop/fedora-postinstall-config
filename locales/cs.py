@@ -12,7 +12,7 @@ if not os.path.exists("/usr/bin/dnf"):
 else:
     print('\033[1m' + '→→ OK' + '\033[0m')
 print("→→ nyní se vám zobrazí dialogové okno pro zadání hesla, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:")
-os.system("pkexec dnf update -y")
+os.system("dnf update -y")
 print("→ aktualizace Fedory " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Shrnutí:' + '\033[0m')
 print("- kontrola názvu distribuce - OK \n- aktualizace systému - OK \n- konfigurace GRUB + Btrfs a instalace timeshift \n- konfigurace Flathub repositáře a instalace Flatpak aplikací \n- konfigurace kodeků \n- zrychlení DNF \n- instalace volitelného SW pro vaší grafickou kartu")
@@ -28,9 +28,9 @@ elif yn == 'y' or 'Y':
         # Timshift & make installation
         print("→→ kontrola jestli je nainstalován timehift a make")
         if not os.path.exists("/usr/bin/timehsift"):
-            os.system("sudo dnf install -y timeshift")
+            os.system("dnf install -y timeshift")
         if not os.path.exists("/usr/bin/make"):
-            os.system("sudo dnf install -y make")
+            os.system("dnf install -y make")
         
         # Preparing for install grub-btrfs
         print("→→ stahování repozitáře grub-brtfs")
@@ -58,7 +58,7 @@ elif yn == 'y' or 'Y':
             p.write('WantedBy=run-timeshift-backup.mount')
         
         # Installation grub-btrfs
-        os.system("sudo make install")
+        os.system("make install")
         print("→→→ kompilace a instalace pomocí programu make proběhla úspěšně")
         # Activate process grub-btrfs with systemd
         os.system("sudo systemctl enable grub-btrfs.path && sudo systemctl start grub-btrfs.paath")
@@ -110,11 +110,11 @@ elif yn == 'y' or 'Y':
     if dnf == 'n':
         print("Přeskakuji.")
     elif dnf == 'Y' or 'y':
-        print(" opět se vám zobrazí dialogové okno pro zadání hesla, proto že je potřeba upravit nastavení dnf:")
-        os.system("pkexec python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
+        #print(" opět se vám zobrazí dialogové okno pro zadání hesla, proto že je potřeba upravit nastavení dnf:")
+        os.system("python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
         print(" dnf bylo úspěšně zrychleno")
     if codecs == 'n':
         print("Přeskakuji.")
     elif codecs == 'Y' or 'y':
-        os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
+        os.system("dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
     print('\033[1m' + 'post-konfigurace Fedory proběhla úspěšně!' + '\033[0m')
