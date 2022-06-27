@@ -10,7 +10,7 @@ if not os.path.exists("/usr/bin/dnf"):
 else:
     print('\033[1m' + '→→ OK' + '\033[0m')
 print("→→ nyní se vám zobrazí dialogové okno pro zadání hesla, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:")
-os.system("dnf update -y")
+os.system("sudo dnf update -y")
 print("→ aktualizace Fedory " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Shrnutí:' + '\033[0m')
 print("- kontrola názvu distribuce - OK \n- aktualizace systému - OK \n- konfigurace GRUB + Btrfs a instalace timeshift \n- konfigurace Flathub repositáře a instalace Flatpak aplikací \n- konfigurace kodeků \n- zrychlení DNF \n- instalace volitelného SW pro vaší grafickou kartu")
