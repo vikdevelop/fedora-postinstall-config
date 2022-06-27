@@ -9,7 +9,7 @@ if not os.path.exists("/usr/bin/dnf"):
     exit()
 else:
     print('\033[1m' + '→→ OK' + '\033[0m')
-print("→→ nyní se vám zobrazí dialogové okno pro zadání hesla, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:")
+print("→→ nyní se vám zobrazí výzva pro zadání hesla, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:")
 os.system("sudo dnf update -y")
 print("→ aktualizace Fedory " + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + 'Shrnutí:' + '\033[0m')
