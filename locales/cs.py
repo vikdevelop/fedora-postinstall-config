@@ -108,7 +108,6 @@ elif yn == 'y' or 'Y':
     if dnf == 'n':
         print("Přeskakuji.")
     elif dnf == 'Y' or 'y':
-        print(" opět se vám zobrazí dialogové okno pro zadání hesla, proto že je potřeba upravit nastavení dnf:")
         os.system("pkexec python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
         print(" dnf bylo úspěšně zrychleno")
     if codecs == 'n':
