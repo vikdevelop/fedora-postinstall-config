@@ -9,7 +9,7 @@ if os.path.exists("/dev/nvidia0"):
     elif nvidia == 'y' or 'Y':
         print("→ before installation proprietary driver, we first check, if updates avaible again:")
         os.system("sudo dnf update --refresh -y")
-        print("→ instalování prop. ovladače nVidia Linux akmod graphic card driver:")
+        print("→ installing proprietary nVidia Linux akmod graphic card driver:")
         os.system("sudo dnf install -y akmod-nvidia")
         print('\033[1m' + '→→ OK' + '\033[0m')
 else:
