@@ -24,4 +24,4 @@ else:
     elif corectrl == 'Y' or 'y':
         os.system("sudo dnf install -y corectrl")
         print('\033[92m' + corectrl_status)
-print('\033[1m' + 'post-configuration of Fedora was successfull!' + '\033[0m')
+#print('\033[1m' + 'post-configuration of Fedora was successfull!' + '\033[0m')
