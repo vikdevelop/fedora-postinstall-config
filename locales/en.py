@@ -58,3 +58,6 @@ corectrl_title = "→ installation program CoreCtrl for simple setting GPU by AM
 corectrl_input = "→→ do you want intstall CoreCtrl? [Y/n]: "
 corectrl_skip = "installation CoreCtrl: I skiping"
 corectrl_status = 'CoreCtrl was instaled successfull'
+
+# Message about successfully post-install configuration of Fedora
+postinstall_config_successfull = 'post-install configuration of Fedora was successfull!'
