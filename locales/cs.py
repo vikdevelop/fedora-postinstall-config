@@ -5,6 +5,7 @@
 checking = '→ kontrola, jestli se jedná o distribuci Fedora '
 xerror = 'vypadá to, že na tomto HW není nainstalovaná distribuce Fedora, nebo je poškozená. V takovém případě nemůžete tento skript použít :('
 sudo = '→→ nyní se vám zobrazí výzva pro zadání hesla, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:'
+update_will_take_time = "Pokud jsou k dispozici aktualizace, chvíli to potrvá. Nemějte však obavy, zabere to jen několik minut. Po dokončení aktualizací se níže zobrazí zpráva 'Aktualizace Fedora OK', takže můžete pokračovat."
 update_status = '→ aktualizace Fedory '
 
 # Summary
@@ -16,6 +17,8 @@ canceled = "Zrušeno."
 # GRUB-BTRFS configuration
 grub_btrfs_title = "→ konfigurace GRUB + Btrfs"
 timeshift_make = "→→ kontrola jestli je nainstalován timehift a make"
+installing_timeshift = "→→→ instalace timeshift ..."
+installing_make = "→→→ instalace make ..."
 grub_btrfs_downloading = "→→ stahování repozitáře grub-brtfs"
 download_folder = "Stažené"
 make_status = "→→→ kompilace a instalace pomocí programu make proběhla úspěšně"
@@ -28,8 +31,11 @@ flatpak_installation_title = "→ instalace doporučených Flatpak aplikací"
 flatpak_installation_desc = "Jestli chcete, můžete tento krok přeskočit stisknutím klávesy enter (pro pokračování stiskněte klávesu c): "
 skip_flatpakinstall = "instalace Flatpak aplikací: přeskakuji."
 flatseal = "Chcete nainstalovat aplikaci Flatseal, která umožňuje nastavovat oprávnění aplikací Flatpak? [Y/n]: "
+installing_flatseal = "Instalace Flatseal ..."
 em = "Chcete nainstalovat aplikaci Extension Manager, která umožňuje spravovat rozšíření pro prostředí GNOME (edice Fedora Workstation)? [Y/n]: "
+installing_em = "Instalace Extension Manager ..."
 dw = "Chcete nainstalovat aplikaci Dynamic Wallpaper (Dynamická tapeta), která umožňuje nastavování přechodných tapet v prostředí GNOME? [Y/n]: "
+installing_dw = "Instalace Dynamic Wallpaper ..."
 flatseal_installed_status = "Flatseal je již nainstalovaný."
 em_installed_status = "Extension Manager je již nainstalovaný."
 dw_installed_status = "Dynamic Wallpaper je již nainstalovaný."
