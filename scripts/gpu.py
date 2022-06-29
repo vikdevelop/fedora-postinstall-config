@@ -10,9 +10,9 @@ if os.path.exists("/dev/nvidia0"):
         print(nvidiagpu_skip)
     elif nvidia == 'y' or 'Y':
         print(update_before_installation_nvidiagpu)
-        os.system("sudo dnf update --refresh -y")
-        print(nvidiagpu_installation_status)
-        os.system("sudo dnf install -y akmod-nvidia")
+        os.system("sudo dnf update --refresh -y > /dev/null 2>&1")
+        print("Installing NVIDIA proprietary driver.\n - it's gonna take a while")
+        os.system("sudo dnf install -y akmod-nvidia > /dev/null 2>&1")
         print('\033[1m' + '→→ OK' + '\033[0m')
         print('\033[93m' + nvidiagpu_warning_restart)
 else:
