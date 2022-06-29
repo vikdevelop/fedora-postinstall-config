@@ -108,7 +108,10 @@ elif yn == 'y' or 'Y':
     codecs = input(codecs_input)
     print(dnf_speedup_title_desc)
     dnf = input(dnf_input)
-    os.system("python3 /tmp/fedora-postinstall-config/scripts/gpu.py")
+    # Import gpu script
+    sys.path.append("/tmp/fedora-postinstall-config/scripts")
+    import gpu
+    #os.system("python3 /tmp/fedora-postinstall-config/scripts/gpu.py")
     if dnf == 'n':
         print(skip_dnf_speedup)
     elif dnf == 'Y' or 'y':
