@@ -118,4 +118,4 @@ elif yn == 'y' or 'Y':
         print(skip_codecs_installation)
     elif codecs == 'Y' or 'y':
         os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
-    print('\033[1m' + 'post-configuration of Fedora was successfull!' + '\033[0m')
+    print('\033[1m' + postinstall_config_successfull + '\033[0m')
