@@ -69,7 +69,7 @@ if yn == 'y' or 'Y':
     print("→ configuration Flatpak-Flathub repo")
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Install Flatpak Apps
-print("→ installation recommended Flatpak apps")
+    print("→ installation recommended Flatpak apps")
     skip = input("If you want, you can skip this step by pressing the enter key (press the c key to continue): ")
     if skip == "":
         print("I skiping.")
