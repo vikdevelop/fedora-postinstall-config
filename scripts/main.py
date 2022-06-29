@@ -15,7 +15,7 @@ else:
     print('\033[1m' + '→→ OK' + '\033[0m')
 print(sudo)
 print(update_will_take_time)
-os.system("sudo dnf update -y > /dev/null 2>&1")
+os.system("sudo dnf update -y")
 print(update_status + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + summary_title + '\033[0m')
 print(summary_description)
