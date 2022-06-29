@@ -6,4 +6,5 @@ if subprocess.getoutput("locale") == 'LANG=cs_CZ.UTF-8\nLC_CTYPE="cs_CZ.UTF-8"\n
     from locales.cs import *
     import scripts.main
 else:
-    print("For now nothing.")
+    from locales.en import *
+    import scripts.main
