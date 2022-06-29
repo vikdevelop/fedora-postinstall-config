@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import os
+import colorama
+from colorama import Fore
 if os.path.exists("/dev/nvidia0"):
     print("→ installation of proprietary driver by nVidia")
     nvidia = input("→→ do you wish install proprietary driver by nVidia? [Y/n]: ")
@@ -12,6 +14,7 @@ if os.path.exists("/dev/nvidia0"):
         print("→ installing proprietary nVidia Linux akmod graphic card driver:")
         os.system("sudo dnf install -y akmod-nvidia")
         print('\033[1m' + '→→ OK' + '\033[0m')
+        print(Fore.RED + 'For your nVidia GPU settings to take effect, you need to restart your computer')
 else:
     print("→ installation of program CoreCtrl for simple settings GPUs by AMD")
     corectrl = input("→→ so do you wish install corectrl? [Y/n]: ")
