@@ -103,6 +103,7 @@ if yn == 'y' or 'Y':
     codecs = input("→→→ do you wish to install additional multimedia codecs? [Y/n]: ")
     print("→ speeding up DNF pkg manager \n→→ DNF package manager is one of the slower package managers. However, it is possible to speed it up.")
     dnf = input("→→→ so do you wish speeding up dnf pkg manager? [Y/n]: ")
+    os.system("python3 /tmp/fedora-postinstall-config/scripts/gpu.py")
     if dnf == 'n':
         print("I skiping.")
     elif dnf == 'Y' or 'y':
