@@ -1,23 +1,26 @@
 #!/usr/bin/python3
 import os
+import sys
+sys.path.append("/tmp/fedora-postinstall-config")
+from fedora_postinstall_config import *
 if os.path.exists("/dev/nvidia0"):
-    print("→ installation of proprietary driver by nVidia")
-    nvidia = input("→→ do you wish install proprietary driver by nVidia? [Y/n]: ")
+    print(nvidiagpu_installation_title)
+    nvidia = input(nvidiagpu_installation_input)
     # NVIDIA proprietary graphic card driver installation
     if nvidia == 'n':
-        print("I skiping.")
+        print(nvidiagpu_skip)
     elif nvidia == 'y' or 'Y':
-        print("→ before installation proprietary driver, we first check, if updates avaible again:")
+        print(update_before_installation_nvidiagpu)
         os.system("sudo dnf update --refresh -y")
-        print("→ installing proprietary nVidia Linux akmod graphic card driver:")
+        print(nvidiagpu_installation_status)
         os.system("sudo dnf install -y akmod-nvidia")
         print('\033[1m' + '→→ OK' + '\033[0m')
-        print('\033[93m' + 'For your nVidia GPU settings to take effect, you need to restart your computer')
+        print('\033[93m' + nvidiagpu_warning_restart)
 else:
-    print("→ installation of program CoreCtrl for simple settings GPUs by AMD")
-    corectrl = input("→→ so do you wish install corectrl? [Y/n]: ")
+    print(corectrl_title)
+    corectrl = input(corectrl_input)
     if corectrl == 'n':
-        print("I skiping.")
+        print(corectrl_skip)
     elif corectrl == 'Y' or 'y':
         os.system("sudo dnf install -y corectrl")
-        print('\033[92m' + 'CoreCtrl was instaled successfull')
+        print('\033[92m' + corectrl_status)
