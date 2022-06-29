@@ -105,12 +105,12 @@ if yn == 'y' or 'Y':
     dnf = input("→→→ so do you wish speeding up dnf pkg manager? [Y/n]: ")
     os.system("python3 /tmp/fedora-postinstall-config/scripts/gpu.py")
     if dnf == 'n':
-        print("I skiping.")
+        print("speeding up dnf: I skiping.")
     elif dnf == 'Y' or 'y':
         os.system("pkexec python3 /tmp/fedora-postinstall-config/scripts/dnf-fast.py")
         print(" dnf was speed up successfull.")
     if codecs == 'n':
-        print("I skiping.")
+        print("installation multimedia codecs: I skiping.")
     elif codecs == 'Y' or 'y':
         os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
     print('\033[1m' + '→ post installation configuration of Fedora was successfull"' + '\033[0m')
