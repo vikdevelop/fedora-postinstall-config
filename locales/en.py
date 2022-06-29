@@ -5,7 +5,6 @@
 checking = '→ checking if it is a Fedora distribution '
 xerror = 'it looks like the Fedora distribution is not installed on this HW, or it is corrupted. In this case, you cannot use this script :('
 sudo = '→→ we will now ask you for your password within sudo that choosed in installation of Fedora, because we need to update the Fedora distribution packages to the latest version:'
-update_will_take_time = "If updates are available, it will take a while. Don't worry though, it will only take a few minutes. When the updates are complete, you will see 'updatation Fedora OK' below, so you can continue."
 update_status = '→ updatation Fedora '
 
 # Summary
