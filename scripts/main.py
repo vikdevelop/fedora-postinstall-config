@@ -89,6 +89,7 @@ elif yn == 'y' or 'Y':
             print("...")
         elif flatseal == 'Y' or 'y':
             if not os.path.exists("/var/lib/flatpak/app/com.github.tchx84.Flatseal"):
+                print(installing_flatseal)
                 os.system("flatpak install -y com.github.tchx84.Flatseal > /dev/null 2>&1")
             else:
                 print(flatseal_installed_status)
@@ -96,14 +97,16 @@ elif yn == 'y' or 'Y':
             print("...")
         elif em == 'Y' or 'y':
             if not os.path.exists("/var/lib/flatpak/app/com.mattjakeman.ExtensionManager"):
+                print(installing_em)
                 os.system("flatpak install -y com.mattjakeman.ExtensionManager > /dev/null 2>&1")
             else:
                 print(em_installed_status)
         if dw == 'n':
             print("...")
         elif dw == 'Y' or 'y':
-            if not os.path.exists("/var/lib/flatpak/app/me.dusansimic.DynamicWallpaper > /dev/null 2>&1"):
-                os.system("flatpak install -y me.dusansimic.DynamicWallpaper")
+            if not os.path.exists("/var/lib/flatpak/app/me.dusansimic.DynamicWallpaper"):
+                print(installing_dw)
+                os.system("flatpak install -y me.dusansimic.DynamicWallpaper > /dev/null 2>&1")
             else:
                 print(dw_installed_status)
     print(media_codecs_title)
@@ -112,9 +115,8 @@ elif yn == 'y' or 'Y':
     print(dnf_speedup_title_desc)
     dnf = input(dnf_input)
     # Import gpu script
-    #sys.path.append("/tmp/fedora-postinstall-config/scripts")
-    #import gpu
-    #os.system("python3 /tmp/fedora-postinstall-config/scripts/gpu.py")
+    sys.path.append("/tmp/fedora-postinstall-config/scripts")
+    import gpu
     if dnf == 'n':
         print(skip_dnf_speedup)
     elif dnf == 'Y' or 'y':
