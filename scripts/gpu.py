@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 import os
 import sys
-sys.path.append("/tmp/fedora-postinstall-config/scripts")
-import main
+
 if os.path.exists("/dev/nvidia0"):
     print(nvidiagpu_installation_title)
     nvidia = input(nvidiagpu_installation_input)
