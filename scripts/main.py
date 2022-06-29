@@ -14,7 +14,8 @@ if not os.path.exists("/usr/bin/dnf"):
 else:
     print('\033[1m' + '→→ OK' + '\033[0m')
 print(sudo)
-os.system("sudo dnf update -y")
+print(update_will_take_time)
+os.system("sudo dnf update -y > /dev/null 2>&1")
 print(update_status + '\033[1m' + 'OK' + '\033[0m')
 print('\033[1m' + summary_title + '\033[0m')
 print(summary_description)
@@ -30,13 +31,15 @@ elif yn == 'y' or 'Y':
         # Timshift & make installation
         print(timeshift_make)
         if not os.path.exists("/usr/bin/timehsift"):
-            os.system("dnf install -y timeshift")
+            print(installing_timeshift)
+            os.system("dnf install -y timeshift > /dev/null 2>&1")
         if not os.path.exists("/usr/bin/make"):
-            os.system("dnf install -y make")
+            print(installing_make)
+            os.system("dnf install -y make > /dev/null 2>&1")
         
         # Preparing for install grub-btrfs
         print(grub_btrfs_downloading)
-        os.system("git clone https://github.com/Antynea/grub-btrfs /tmp/fedora-postinstall-config/grub-btrfs")
+        os.system("git clone https://github.com/Antynea/grub-btrfs /tmp/fedora-postinstall-config/grub-btrfs > /dev/null 2>&1")
         os.chdir("/tmp/fedora-postinstall-config/grub-btrfs")
         # config file of grub-btrfs
         with open("config", "w") as c:
@@ -63,9 +66,9 @@ elif yn == 'y' or 'Y':
         os.system("sudo make install")
         print(make_status)
         # Activate process grub-btrfs with systemd
-        os.system("sudo systemctl enable grub-btrfs.path && sudo systemctl start grub-btrfs.paath")
+        os.system("sudo systemctl enable grub-btrfs.path > /dev/null 2>&1 && sudo systemctl start grub-btrfs.paath > /dev/null 2>&1")
         # Update GRUB
-        os.system("sudo grub2-mkconfig -o /boot/grub2/grub.cfg")
+        os.system("sudo grub2-mkconfig -o /boot/grub2/grub.cfg > /dev/null 2>&1")
         print(grub_btrfs_status)
     else:
         print(grub_btrfs_already_configured)
@@ -86,20 +89,20 @@ elif yn == 'y' or 'Y':
             print("...")
         elif flatseal == 'Y' or 'y':
             if not os.path.exists("/var/lib/flatpak/app/com.github.tchx84.Flatseal"):
-                os.system("flatpak install -y com.github.tchx84.Flatseal")
+                os.system("flatpak install -y com.github.tchx84.Flatseal > /dev/null 2>&1")
             else:
                 print(flatseal_installed_status)
         if em == 'n':
             print("...")
         elif em == 'Y' or 'y':
             if not os.path.exists("/var/lib/flatpak/app/com.mattjakeman.ExtensionManager"):
-                os.system("flatpak install -y com.mattjakeman.ExtensionManager")
+                os.system("flatpak install -y com.mattjakeman.ExtensionManager > /dev/null 2>&1")
             else:
                 print(em_installed_status)
         if dw == 'n':
             print("...")
         elif dw == 'Y' or 'y':
-            if not os.path.exists("/var/lib/flatpak/app/me.dusansimic.DynamicWallpaper"):
+            if not os.path.exists("/var/lib/flatpak/app/me.dusansimic.DynamicWallpaper > /dev/null 2>&1"):
                 os.system("flatpak install -y me.dusansimic.DynamicWallpaper")
             else:
                 print(dw_installed_status)
