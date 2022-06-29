@@ -108,7 +108,7 @@ elif yn == 'y' or 'Y':
     codecs = input(codecs_input)
     print(dnf_speedup_title_desc)
     dnf = input(dnf_input)
-    
+    os.system("python3 /tmp/fedora-postinstall-config/scripts/gpu.py")
     if dnf == 'n':
         print(skip_dnf_speedup)
     elif dnf == 'Y' or 'y':
@@ -118,4 +118,4 @@ elif yn == 'y' or 'Y':
         print(skip_codecs_installation)
     elif codecs == 'Y' or 'y':
         os.system("sudo dnf groupupdate -y multimedia --setop='install_weak_deps=False' --exclude=PackageKit-gstreamer-plugin > /dev/null 2>&1 && sudo dnf groupupdate -y sound-and-video > /dev/null 2>&1")
-    #print('\033[1m' + 'post-configuration of Fedora was successfull!' + '\033[0m')
+    print('\033[1m' + 'post-configuration of Fedora was successfull!' + '\033[0m')
