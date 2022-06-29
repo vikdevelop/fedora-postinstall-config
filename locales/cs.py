@@ -58,3 +58,6 @@ corectrl_title = "→ instalace programu CoreCtrl pro jednoduché nastavení GPU
 corectrl_input = "→→ chcete tedy nainstalovat program CoreCtrl? [Y/n]: "
 corectrl_skip = "instalace corectrl: přeskakuji"
 corectrl_status = 'CoreCtrl was instaled successfull'
+
+# Message about successfully post-install configuration
+postinstall_config_successfull = 'po-instalační konfigurace Fedory proběhla úspěšně!'
