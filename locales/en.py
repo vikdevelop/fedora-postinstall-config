@@ -10,7 +10,7 @@ update_status = '→ updatation Fedora '
 # Summary
 summary_title = "Summary: "
 summary_description = "- checking name of distro - OK \n- updatation of Fedora - OK \n- configuration GRUB + Btrfs a installation timeshift \n- configuration Flathub repository and installation recommended Flatpak apps \n- configuration of codecs \n- speeding up DNF \n- installation optional SW for your graphic card"
-continueyn = "Would you like to continue? [Y/n]: "
+continueyn = "Would you like to continue? "
 canceled = "Canceled."
 
 # GRUB-BTRFS configuration
