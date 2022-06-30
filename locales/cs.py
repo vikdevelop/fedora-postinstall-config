@@ -5,7 +5,6 @@
 checking = '→ kontrola, jestli se jedná o distribuci Fedora '
 xerror = 'vypadá to, že na tomto HW není nainstalovaná distribuce Fedora, nebo je poškozená. V takovém případě nemůžete tento skript použít :('
 sudo = '→→ nyní se vám zobrazí výzva pro zadání hesla, které jste zvolili při instalaci Fedory, protože je potřeba aktualizovat balíčky distribuce Fedora na nejnovější verzi:'
-update_will_take_time = "Pokud jsou k dispozici aktualizace, chvíli to potrvá. Nemějte však obavy, zabere to jen několik minut. Po dokončení aktualizací se níže zobrazí zpráva 'Aktualizace Fedora OK', takže můžete pokračovat."
 update_status = '→ aktualizace Fedory '
 
 # Summary
