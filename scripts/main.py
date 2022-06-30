@@ -25,7 +25,7 @@ if yn == 'n':
 elif yn == 'y' or 'Y':
     if not os.path.exists("/usr/lib/systemd/system/grub-btrfs.path"):
         # GRUB+BRTFS
-        print('\033[1m' + grub_btrfs_title '\033[0m')
+        print('\033[1m' + grub_btrfs_title + '\033[0m')
         
         # Timshift & make installation
         print(timeshift_make)
@@ -70,14 +70,14 @@ elif yn == 'y' or 'Y':
         os.system("sudo grub2-mkconfig -o /boot/grub2/grub.cfg > /dev/null 2>&1")
         print(grub_btrfs_status)
     else:
-        print(grub_btrfs_already_configured)
+        print('\033[1m' + grub_btrfs_already_configured + '\033[0m')
     
     # Enable flatpak repo
     print('\033[1m' + flathub_repo_status + '\033[0m')
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Multimedia & codecs
-    print('\033[1m' + flatpak_installation_title)
-    skip = input(flatpak_installation_desc + '\033[0m')
+    print('\033[1m' + flatpak_installation_title + '\033[0m')
+    skip = input(flatpak_installation_desc)
     if skip == "":
         print(skip_flatpakinstall)
     elif skip == "c":
