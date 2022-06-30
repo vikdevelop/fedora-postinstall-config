@@ -4,7 +4,7 @@ import sys
 sys.path.append("/tmp/fedora-postinstall-config/locales")
 from en import *
 if os.path.exists("/dev/nvidia0"):
-    print(nvidiagpu_installation_title)
+    print('\033[1m' + nvidiagpu_installation_title + '\033[0m')
     nvidia = input(nvidiagpu_installation_input)
     if nvidia == 'n':
         print(nvidiagpu_skip)
@@ -16,7 +16,7 @@ if os.path.exists("/dev/nvidia0"):
         print('\033[1m' + '→→ OK' + '\033[0m')
         print('\033[93m' + nvidiagpu_warning_restart + '\033[0m')
 else:
-    print(corectrl_title)
+    print('\033[1m' + corectrl_title + '\033[0m')
     corectrl = input(corectrl_input)
     if corectrl == 'n':
         print(corectrl_skip)
