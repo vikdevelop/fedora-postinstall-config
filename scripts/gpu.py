@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 import os
 import sys
+import subprocess
 sys.path.append("/tmp/fedora-postinstall-config/locales")
 from en import *
-if os.path.exists("/dev/nvidia0"):
+if subprocess.getoutput('glxinfo | grep "Vendor"') == "Vendor: nouveau (0x10de)":
     print('\033[1m' + nvidiagpu_installation_title + '\033[0m')
     nvidia = input(nvidiagpu_installation_input)
     if nvidia == 'n':
