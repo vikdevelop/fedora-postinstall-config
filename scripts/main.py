@@ -12,10 +12,10 @@ if not os.path.exists("/usr/bin/dnf"):
     print('\033[1m' + 'x-ERROR:' + '\033[0m' + xerror)
     exit()
 else:
-    print('\033[1m' + '→→ OK' + '\033[0m')
+    print('\033[92m' + '→→ OK' + '\033[0m')
 print(sudo)
 os.system("sudo dnf update -y")
-print(update_status + '\033[1m' + 'OK' + '\033[0m')
+print(update_status + '\033[92m' + 'OK' + '\033[0m')
 print('\033[1m' + summary_title + '\033[0m')
 print(summary_description)
 yn = input(continueyn + " [Y/n]: ")
@@ -25,7 +25,7 @@ if yn == 'n':
 elif yn == 'y' or 'Y':
     if not os.path.exists("/usr/lib/systemd/system/grub-btrfs.path"):
         # GRUB+BRTFS
-        print(grub_btrfs_title)
+        print('\033[1m' + grub_btrfs_title '\033[0m')
         
         # Timshift & make installation
         print(timeshift_make)
@@ -73,11 +73,11 @@ elif yn == 'y' or 'Y':
         print(grub_btrfs_already_configured)
     
     # Enable flatpak repo
-    print(flathub_repo_status)
+    print('\033[1m' + flathub_repo_status + '\033[0m')
     os.system("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     # Multimedia & codecs
-    print(flatpak_installation_title)
-    skip = input(flatpak_installation_desc)
+    print('\033[1m' + flatpak_installation_title)
+    skip = input(flatpak_installation_desc + '\033[0m')
     if skip == "":
         print(skip_flatpakinstall)
     elif skip == "c":
@@ -108,10 +108,10 @@ elif yn == 'y' or 'Y':
                 os.system("flatpak install -y me.dusansimic.DynamicWallpaper > /dev/null 2>&1")
             else:
                 print(dw_installed_status)
-    print(media_codecs_title)
+    print('\033[1m' + media_codecs_title + '\033[0m')
     print(media_codecs_desc)
     codecs = input(codecs_input)
-    print(dnf_speedup_title_desc)
+    print('\033[1m' + dnf_speedup_title_desc + '\033[0m')
     dnf = input(dnf_input)
     # Import gpu script
     sys.path.append("/tmp/fedora-postinstall-config/scripts")
