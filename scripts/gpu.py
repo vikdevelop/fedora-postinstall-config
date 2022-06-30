@@ -14,7 +14,7 @@ if os.path.exists("/dev/nvidia0"):
         print("Installing NVIDIA proprietary driver.\n - it's gonna take a while")
         os.system("sudo dnf install -y akmod-nvidia > /dev/null 2>&1")
         print('\033[1m' + '→→ OK' + '\033[0m')
-        print('\033[93m' + nvidiagpu_warning_restart)
+        print('\033[93m' + nvidiagpu_warning_restart + '\033[0m')
 else:
     print(corectrl_title)
     corectrl = input(corectrl_input)
@@ -23,5 +23,4 @@ else:
     elif corectrl == 'Y' or 'y':
         print("Installing CoreCtrl ...")
         os.system("sudo dnf install -y corectrl > /dev/null 2>&1")
-        print('\033[92m' + corectrl_status)
-#print('\033[1m' + 'post-configuration of Fedora was successfull!' + '\033[0m')
+        print('\033[92m' + corectrl_status + '\033[0m')
